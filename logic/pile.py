@@ -1,4 +1,3 @@
-from infra.api_wrapper import APIWrapper
 from infra import config_reader
 
 
