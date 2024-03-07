@@ -13,8 +13,8 @@ class CardTest(unittest.TestCase):
     def test_draw_card(self):
         for count in range(1, 6):
             response = self.deck.draw_card(deck_id=self.deck_id, count=count)
-            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
             response_json = response.json()
+            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
             self.assertEqual(len(response_json["cards"]), count)
             self.assertTrue(response_json["success"])
 

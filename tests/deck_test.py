@@ -15,33 +15,34 @@ class MainTesrt(unittest.TestCase):
     def test_shuffel_deck(self):
         for count in range(1, 7):
             response = self.deck.shuffel_deck(count=count)
-            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
             response_json = response.json()
             self.assertTrue(response_json['success'])
             self.assertTrue(response_json['shuffled'])
+            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
+
 
     def test_reshuffel_deck(self):
         response = self.deck.reshuffel_deck(self.deck_id)
-        self.assertTrue(response.status_code, 'Didnt get status 200 OK')
         response_json = response.json()
+        self.assertTrue(response.status_code, 'Didnt get status 200 OK')
         self.assertTrue(response_json['success'])
         self.assertTrue(response_json['shuffled'])
 
     def test_return_cards_to_deck(self):
         response = self.deck.draw_card(deck_id=self.deck_id, count=1)
         response_json = response.json()
-        self.assertTrue(response.status_code, 'Didnt get status 200 OK')
-        self.assertEqual(response_json['remaining'], 51)
         response = self.deck.return_cards(self.deck_id)
         response_json = response.json()
+        self.assertTrue(response.status_code, 'Didnt get status 200 OK')
+        self.assertEqual(response_json['remaining'], 51)
         self.assertTrue(response.status_code, 'Didnt get status 200 OK')
         self.assertEqual(response_json['remaining'], 52)
 
     def test_draw_card(self):
         for count in range(1, 6):
             response = self.deck.draw_card(deck_id=self.deck_id, count=count)
-            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
             response_json = response.json()
+            self.assertTrue(response.status_code, 'Didnt get status 200 OK')
             self.assertEqual(len(response_json["cards"]), count)
             self.assertTrue(response_json["success"])
 
