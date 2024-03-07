@@ -16,8 +16,8 @@ class DeckOfCards:
         return result
 
     def add_new_deck(self):
-        result = self.my_api.api_get_request(f"{self.url}new/")
-        return result
+        self.deck = self.my_api.api_get_request(f"{self.url}new/")
+        return self.deck
 
     def return_cards(self, deck_id):
         result = self.my_api.api_get_request(f"{self.url}{deck_id}/return/")
@@ -28,5 +28,11 @@ class DeckOfCards:
         return result
 
     def draw_card(self, deck_id, count):
-        result = self.my_api.api_get_request(f"{self.url}{deck_id}/draw/?count={count}")
-        return result
+        self.card = self.my_api.api_get_request(f"{self.url}{deck_id}/draw/?count={count}")
+        return self.card
+
+    def get_deck_id(self):
+        return self.deck.json()['deck_id']
+
+    def get_card_name(self):
+        return self.card.json()["cards"][0]['code']

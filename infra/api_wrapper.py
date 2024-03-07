@@ -5,7 +5,6 @@ class APIWrapper:
 
     def __init__(self):
         self.response = None
-        url = None
         self.my_request = requests
 
     def api_get_request(self, url):

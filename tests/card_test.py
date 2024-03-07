@@ -8,7 +8,7 @@ class CardTest(unittest.TestCase):
         self.my_api = APIWrapper()
         self.deck = DeckOfCards(self.my_api)
         add_deck_resp = self.deck.add_new_deck().json()
-        self.deck_id = add_deck_resp["deck_id"]
+        self.deck_id = self.deck.get_deck_id()
 
     def test_draw_card(self):
         for count in range(1, 6):
